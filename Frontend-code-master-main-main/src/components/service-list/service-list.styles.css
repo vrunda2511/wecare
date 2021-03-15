@@ -1,0 +1,18 @@
+.cards {
+  background: linear-gradient(#e5e5e5, #fff, #e5e5e5);
+}
+.container-fluid .row {
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  /* padding-left: 9rem;
+  padding-right: 9rem; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cardlist {
+  justify-content: center;
+
+  /* justify-content:space-around; */
+}
