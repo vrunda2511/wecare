@@ -1,7 +1,8 @@
 const client=require("../../Connection/connection");
 var jwt=require('jsonwebtoken')
 var expressJwt=require('express-jwt')
-
+var nodemailer = require('nodemailer');
+var EmailTemplates = require('swig-email-templates');
 
 exports.Signup=function(req,res){
     (async()=>{
@@ -11,10 +12,49 @@ exports.Signup=function(req,res){
             {
                 res.status(401).json(error);
             }
-            res.status(200).json({
-                status:"Success",
-                msg:"User added Succesfully"
-            })
+            var smtpConfig =  {
+                service: 'smtp.gmail.com',
+                host: 'smtp.gmail.com',
+                port: 587,
+                starttls: {
+                    enable: true
+                },
+                secureConnection: true,
+                auth: {
+                    user: 'wecarehomecare.2511@gmail.com',
+                    pass: 'savaliya1234'
+                }
+            }
+        
+            var templates = new EmailTemplates();  
+            var transporter = nodemailer.createTransport(smtpConfig);   
+            
+            var context = {
+              email:'wecarehomecare.2511@gmail.com',
+              link : 'www.google.co.in'
+            };
+            
+            templates.render('activate_email.html', context, function(err, html,text, subject) {    
+            
+              transporter.sendMail({
+                from: 'wecarehomecare.2511@gmail.com', // sender address
+                to:getuserdata.email,
+                subject: "WeCareHomecare Account Created ",
+                  text: "Congratulations,you have successfully created your account.Now you can enjoy our services.",
+                  html: "Congratulations,you have successfully created your account.Now you can enjoy our services.<strong>Thank You</strong>"    
+              }, function(err, reply) {
+                if(err){
+                  console.log(err)
+              
+                }
+                else{
+                    res.status(200).json({
+                        status:"Success",
+                        msg:"User added Succesfully"
+                    })
+                }});    
+        });
+
         })
     })();
 }
@@ -29,7 +69,7 @@ exports.SignIn=function(req,res){
             if(result.rowCount<=0){
                 res.status(401).json({
                     status:'Fail',
-                    msg:'Email is not exits'
+                    msg:'Email  not exist'
                 })
             }
             else

@@ -83,8 +83,10 @@ export default function ResetPasswordComponent() {
           });
           localStorage.setItem("customer_id", undefined);
           localStorage.setItem("email", undefined);
-
-          history.push("/");
+          setTimeout(function () {
+            history.push("/");
+        }, 5000);
+        
         })
         .catch(error => console.log("error", error));
     } else {

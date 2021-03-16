@@ -32,7 +32,7 @@ import { Button } from 'react-bootstrap';
         let counter=1
         return (
             <div className="container">
-                <h2 className="text-center" style={{ marginTop: "15px" }}>Customer List ({this.state.count})</h2>
+                <h2 className="text-center" style={{ marginTop: "15px" }}>Customer List</h2>
                
                 <br></br>
                 <div className="row">

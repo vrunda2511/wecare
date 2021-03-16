@@ -152,3 +152,29 @@ p {
     display: none;
   }
 }
+.pagebodytitle2{
+  visibility: visible;
+  animation: slide-up 4s ease;
+}
+@keyframes slide-up {
+  0% {
+      transform: translateY(-1000px);
+  }
+  100% {
+
+      transform: translateY(0);
+  }
+}
+.pagebodybutton{
+  visibility: visible;
+  animation: slide-down 4s ease;
+}
+@keyframes slide-down {
+  0% {
+      transform: translateY(1000px);
+  }
+  100% {
+
+      transform: translateY(0);
+  }
+}

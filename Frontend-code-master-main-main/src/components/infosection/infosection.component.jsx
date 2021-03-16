@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '../ButtonElements.component'
 import { ArrowForward, ArrowRight } from '../videosection/videosection.styles'
+import '../service-list/service-list.styles.css'
 
 import {
     InfoContainer,
@@ -30,7 +31,7 @@ const InfoSection = ({ lightBg, id, imgStart, lightText, darkText, topLine, head
             <InfoContainer lightBg={lightBg} id={id}  >
                 <InfoWrapper>
                     <InfoRow imgStart={imgStart}>
-                        <Column1>
+                        <Column1 className="pagebody">
                             <TextWrapper>
                                 <TopLine lightText={lightText}>{topLine}</TopLine>
                                 <Heading lightText={lightText}>{headLine}</Heading>
@@ -48,7 +49,7 @@ const InfoSection = ({ lightBg, id, imgStart, lightText, darkText, topLine, head
                                 >{buttonLabel}{hover ? <ArrowForward /> : <ArrowRight />}</Button></BtnWrap>
                             </TextWrapper>
                         </Column1>
-                        <Column2>
+                        <Column2 className="pagebodytitle">
                             <ImgWrap>
                                 <Img src={img} alt={alt} />
                             </ImgWrap>

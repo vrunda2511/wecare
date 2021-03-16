@@ -77,9 +77,12 @@ export default function ForgetPasswordComponent() {
             draggable: true,
             progress: undefined
           });
-          localStorage.setItem("email", email);
-          setemail("");
-          setvalue(false);
+          setTimeout(function () {
+            localStorage.setItem("email", email);
+            setemail("");
+            setvalue(false);
+        }, 5000);
+          
         } else {
           toast.error(result.msg, {
             position: "top-right",
@@ -132,11 +135,26 @@ export default function ForgetPasswordComponent() {
   }
   return (
     <div>
+       
       {val ? (
+        <div>
+          <Button
+                type="submit"
+
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                style={{ background: "#ffe484", backgroundColor: "#ffe484", border: "1px bold #ffe484", borderColor: "#000", color: "#000", fontWeight: "bold",marginTop:40,marginLeft:30 }}
+                onClick={(e)=>history.push("/")}
+            // onClick={(e)=>{e.preventDefault();register(firstName,lastName,gender,mobileno,address,area,city,email,password,cpassword)}}
+            >
+                Back to home
+            </Button>
+         
         <Container component="main" maxWidth="xs">
           <CssBaseline />
-          <div style={{ marginTop: 150 }}></div>
-          <div className={classes.paper}>
+          <div style={{ marginTop: 50 }}></div>
+          <div className={classes.paper} style={{marginTop:0}}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
@@ -188,6 +206,7 @@ export default function ForgetPasswordComponent() {
             </form>
           </div>
         </Container>
+        </div>
       ) : (
         <Container component="main" maxWidth="xs">
           <CssBaseline />

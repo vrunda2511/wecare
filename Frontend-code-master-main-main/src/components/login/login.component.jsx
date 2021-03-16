@@ -105,9 +105,23 @@ export default function Login() {
       .catch(error => console.log('error', error));
   }
   return (
+    <div>
+      <Button
+                type="submit"
+
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                style={{ background: "#ffe484", backgroundColor: "#ffe484", border: "1px bold #ffe484", borderColor: "#000", color: "#000", fontWeight: "bold",marginTop:0,marginLeft:30 }}
+                onClick={(e)=>history.push("/")}
+            // onClick={(e)=>{e.preventDefault();register(firstName,lastName,gender,mobileno,address,area,city,email,password,cpassword)}}
+            >
+                Back to home
+            </Button>
+  
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <div className={classes.paper}style={{marginTop:0}}>
         <Avatar className={classes.avatar} style={{backgroundColor:"#ffe484"}}>
          
         </Avatar>
@@ -177,5 +191,6 @@ export default function Login() {
       </div>
       
     </Container>
+    </div>
   );
 }

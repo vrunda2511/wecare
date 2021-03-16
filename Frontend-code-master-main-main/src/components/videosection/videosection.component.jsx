@@ -23,7 +23,7 @@ const VideoSection = () => {
                 <Video autoPlay loop muted src={video} type='video/mp4' />
             </VideoBg>
             <VideoContent>
-                <VideoTitle>Customer Safety Is Our Priority</VideoTitle>
+                <VideoTitle>Customer Satisfaction Is Our Priority</VideoTitle>
                 <VideoDesc>Home Services On Demand</VideoDesc>
                 <VideoBtn>
                     <Button onMouseEnter={onHover} onMouseLeave={onHover} primary="true" dark='true' to='services'

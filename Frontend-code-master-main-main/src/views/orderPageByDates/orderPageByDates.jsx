@@ -1,10 +1,10 @@
 import React from 'react'
-import Orders from '../../components/orders/orders.components'
 import Navbar from '../../components/navbarother/navbar.components'
 import Footer from '../../components/footer/footer.components'
 import Login from '../../components/login/login.component'
+import OrderByDate from '../../components/orders/order-date.components'
 
-const OrderPage = (props) => {
+const OrderPageByDates = () => {
     if (localStorage.getItem("token") === null) {
         return (
             <div>
@@ -17,12 +17,11 @@ const OrderPage = (props) => {
         return (
             <div>
                 <Navbar />
-                <Orders {...props}/>
+                <OrderByDate />
                 <Footer />
             </div>
         )
     }
-
 }
 
-export default OrderPage
+export default OrderPageByDates

@@ -78,7 +78,7 @@ class ListFeedbackComponent extends Component {
 
         return (
             <div className="container">
-                <h2 className="text-center" style={{ marginTop: "15px" }}>Feedback  ({this.state.count})</h2>
+                <h2 className="text-center" style={{ marginTop: "15px" }}>Feedback</h2>
 
                 <div className="row">
                     <table className="table table-striped table-bordered">

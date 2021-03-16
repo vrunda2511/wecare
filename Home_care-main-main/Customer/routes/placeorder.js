@@ -8,11 +8,14 @@ router.post('/PlaceOrder',(req,res)=>{
     return order.PlaceOrder(req,res);
 })
 
-router.get('/ViewOrder/:id',(req,res)=>{
+router.post('/ViewOrder/:id',(req,res)=>{
     return order.ViewOrder(req,res);
 })
 router.get('/ViewOrderAddress/:id',(req,res)=>{
     return order.ViewOrderAddress(req,res);
+})
+router.get('/ViewOrderDates/:id',(req,res)=>{
+    return order.ViewOrderDates(req,res);
 })
 
 module.exports=router;

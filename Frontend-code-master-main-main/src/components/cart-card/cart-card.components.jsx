@@ -60,6 +60,7 @@ export default function CartCard({ cart_id, cartid, sub_servicename, subservice_
         });
       })
       .catch(error => console.log('error', error));
+      window.location.reload(false);
   }
 
 

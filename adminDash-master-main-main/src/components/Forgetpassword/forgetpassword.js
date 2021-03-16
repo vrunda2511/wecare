@@ -137,9 +137,23 @@ export default function  ForgetPasswordComponent() {
       <div>
          {val
       ? 
+      <div>
+         <Button
+                type="submit"
+
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                style={{  fontWeight: "bold",marginTop:40,marginLeft:30 }}
+                onClick={(e)=>history.push("/signin")}
+            // onClick={(e)=>{e.preventDefault();register(firstName,lastName,gender,mobileno,address,area,city,email,password,cpassword)}}
+            >
+                Back to home
+            </Button>
+      
       <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div style={{marginTop:150}}></div>
+      <div style={{marginTop:50}}></div>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -187,6 +201,7 @@ export default function  ForgetPasswordComponent() {
       </div>
      
     </Container>
+    </div>
       :
       <Container component="main" maxWidth="xs">
       <CssBaseline />

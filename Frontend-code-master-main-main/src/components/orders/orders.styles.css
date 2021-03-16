@@ -31,8 +31,16 @@
   display: flex !important;
   justify-content: space-between !important;
   /* margin-top: 10px!important; */
-  background-color: #eee;
+  background-color: black;
+
   font-weight: bold !important;
+  text-decoration: none!important;
+  color:#ffe484!important;
+}
+
+.baton:hover {
+  color:#eee;
+
 }
 .price {
   font-weight: 800;

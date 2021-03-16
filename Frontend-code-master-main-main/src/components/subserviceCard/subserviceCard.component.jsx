@@ -78,7 +78,20 @@ export default function SubserviceCard({ sub_servicename, short_description, pri
 
   function addtocart(subserviceId) {
     if (localStorage.getItem("token") === null) {
-      history.push("/signin")
+      toast.success('Login is required!! ', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+
+    setTimeout(function () {
+        history.push("/signin")
+    }, 5000);
+     
     }
     else {
       var myHeaders = new Headers();
@@ -108,15 +121,12 @@ export default function SubserviceCard({ sub_servicename, short_description, pri
             draggable: true,
             progress: undefined,
           });
+          setCart(true) 
         })
         .catch(error => console.log('error', error));
     }
 
   };
-
-
-
-
 
   return (
     <div className='subServiceCard'>
@@ -155,11 +165,12 @@ export default function SubserviceCard({ sub_servicename, short_description, pri
         <CardActions className="baton">
           {cart
             ?
-            "Added"
+            <div  
+            style={{marginLeft:10}}>Added</div>
             :
             <Button size="small"
-            
-             className="baton" onClick={(e) => { addtocart(subserviceId); setCart(true) }}>
+            style={{marginLeft:5}}
+             className="baton" onClick={(e) => { addtocart(subserviceId);}} >
               Add to Cart
         </Button>}
           <ToastContainer

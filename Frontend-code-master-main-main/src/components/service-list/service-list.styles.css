@@ -16,3 +16,32 @@
 
   /* justify-content:space-around; */
 }
+.pagenobody{
+  visibility: hidden;
+}
+.pagebody{
+  visibility: visible;
+  animation: slide-left 3s ease;
+}
+@keyframes slide-left {
+  0% {
+      transform: translateX(-1000px);
+  }
+  100% {
+
+      transform: translateX(0);
+  }
+}
+.pagebodytitle{
+  visibility: visible;
+  animation: slide-right 3s ease;
+}
+@keyframes slide-right {
+  0% {
+      transform: translateX(1000px);
+  }
+  100% {
+
+      transform: translateX(0);
+  }
+}

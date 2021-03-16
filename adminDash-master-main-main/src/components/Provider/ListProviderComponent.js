@@ -89,7 +89,7 @@ class ListProviderComponent extends Component {
 
         return (
             <div className="container">
-                <h2 className="text-center" style={{ marginTop: "15px" }}>List of Provider ({this.state.count})</h2>
+                <h2 className="text-center" style={{ marginTop: "15px" }}>List of Provider</h2>
                 <div className="row">
                     <ButtonToolbar>
                         <button className="btn btn-info" onClick={() => this.setState({ addModalShow: true })}>

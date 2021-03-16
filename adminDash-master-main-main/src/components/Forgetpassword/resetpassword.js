@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { ToastContainer, toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
+import validator from 'validator'
 
 
 function Copyright() {
@@ -68,6 +69,7 @@ export default function  ResetPasswordComponent() {
             body: urlencoded,
             redirect: 'follow'
             };
+        
 
             fetch("http://localhost:4000/api/ForgetPassword", requestOptions)
             .then(response => response.json())
@@ -87,6 +89,17 @@ export default function  ResetPasswordComponent() {
                     history.push('/');
             })
             .catch(error => console.log('error', error));
+        }
+        else if(!validator.isStrongPassword(password)){
+          toast.error('Password must have 8 charecter with one uppercase,lowercase,number and one special charecter!!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        }); 
         }
         else{
             toast.error("Password not matched", {

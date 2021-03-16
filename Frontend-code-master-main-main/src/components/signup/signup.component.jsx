@@ -4,8 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { Button as btn } from "../ButtonElements.component";
 import "./signup.css";
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -19,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { InputLabel } from "@material-ui/core";
+import validator from 'validator'
 
 
 // const eye = <FontAwesomeIcon icon={faEye} />;
@@ -70,8 +70,11 @@ export default function SignUp() {
     const [email, setemail] = useState();
 
     const [password, setpassword] = useState(false);
-    const [cpassword, setcpassword] = useState();
+    const [regpassword, setregpassword] = useState();
 
+
+    const [cpassword, setcpassword] = useState(false);
+    const pass = ""
 
     function handleSubmit(event) {
 
@@ -86,8 +89,9 @@ export default function SignUp() {
                 progress: undefined,
             });
         }
-        else if (password !== cpassword) {
-            toast.error(' Your Password Does not matched!!', {
+        else if (mobileno.length > 10 || mobileno.length < 10) {
+            console.log(mobileno.length)
+            toast.error('Mobile number must be in 10 digit', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -97,6 +101,44 @@ export default function SignUp() {
                 progress: undefined,
             });
         }
+        else if (!validator.isEmail(email)) {
+            toast.error(' Email is not valid!!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        else if (!validator.isStrongPassword(regpassword)) {
+            console.log(regpassword)
+            toast.error('Password must have 8 charecter with one uppercase,lowercase,number and one special charecter!!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        else if (regpassword !== cpassword) {
+            console.log(password, cpassword)
+            toast.error('Your Password Does not matched', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+
+
+
         else {
             // alert(firstName+lastName+gender+mobileno+address+area+city+email+password+cpassword)
             var myHeaders = new Headers();
@@ -108,7 +150,7 @@ export default function SignUp() {
             urlencoded.append("gender", gender);
             urlencoded.append("mobile_no", mobileno);
             urlencoded.append("email", email);
-            urlencoded.append("password", password);
+            urlencoded.append("password", regpassword);
             urlencoded.append("address", address);
             urlencoded.append("image", "");
             urlencoded.append("area", area);
@@ -127,7 +169,7 @@ export default function SignUp() {
                     console.log(result.status)
                     if (result.status === "Success") {
                         toast.success('You have Succesfully Registerd!! ', {
-                            position: "top-right",
+                            position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
                             closeOnClick: true,
@@ -135,24 +177,41 @@ export default function SignUp() {
                             draggable: true,
                             progress: undefined,
                         });
-                        history.push("/signin")
+
+                        setTimeout(function () {
+                            history.push("/signin")
+                        }, 5000);
                     }
 
                 })
                 .catch(error => console.log('error', error));
         }
     }
-
+    function handlechange(event) {
+        console.log(password)
+    }
 
     return (
-        <div>
+        <div > 
+            <Button
+                type="submit"
+
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                style={{ background: "#ffe484", backgroundColor: "#ffe484", border: "1px bold #ffe484", borderColor: "#000", color: "#000", fontWeight: "bold",marginTop:0,marginLeft:30 }}
+                onClick={(e)=>history.push("/")}
+            // onClick={(e)=>{e.preventDefault();register(firstName,lastName,gender,mobileno,address,area,city,email,password,cpassword)}}
+            >
+                Back to home
+            </Button>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
-                <div className={classes.paper}>
-                <Avatar className={classes.avatar} style={{backgroundColor:"#ffe484"}}>
-         
-         </Avatar>
-                    <Typography component="h1" variant="h5" style={{fontWeight:"bold"}}>
+                <div className={classes.paper} style={{marginTop:0}}>
+                    <Avatar className={classes.avatar} style={{ backgroundColor: "#ffe484" }}>
+
+                    </Avatar>
+                    <Typography component="h1" variant="h5" style={{ fontWeight: "bold" }}>
                         Sign up
             </Typography>
                     <form className={classes.form} noValidate onSubmit={(e) => { e.preventDefault(); handleSubmit() }}>
@@ -183,24 +242,24 @@ export default function SignUp() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
-                            <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel htmlFor="outlined-age-native-simple">Gender</InputLabel>
-                            <Select
-                            native
-                            // value={state.age}
-                            onChange={e => setgender(e.target.value)}
-                            label="Gender"
-                            inputProps={{
-                                name: 'Gender',
-                                id: 'outlined-age-native-simple',
-                            }}
-                            >
-                            <option aria-label="None" value="" />
-                            <option value="Male"> Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Others">Others</option>
-                            </Select>
-                        </FormControl>
+                                <FormControl variant="outlined" className={classes.formControl}>
+                                    <InputLabel htmlFor="outlined-age-native-simple">Gender</InputLabel>
+                                    <Select
+                                        native
+                                        // value={state.age}
+                                        onChange={e => setgender(e.target.value)}
+                                        label="Gender"
+                                        inputProps={{
+                                            name: 'Gender',
+                                            id: 'outlined-age-native-simple',
+                                        }}
+                                    >
+                                        <option aria-label="None" value="" />
+                                        <option value="Male"> Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
+                                    </Select>
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={8}>
                                 <TextField
@@ -274,13 +333,14 @@ export default function SignUp() {
                                     variant="outlined"
                                     required
                                     fullWidth
-
+                                    name="password"
                                     label="Password"
                                     type="password"
                                     id="password"
-                                    onChange={e => setpassword(e.target.value)}
+                                    onChange={e => setpassword(e.target.value), e => setregpassword(e.target.value)}
 
                                 />
+
                                 {/* <i>{eye}</i> */}
                             </Grid>
                             <Grid item xs={6} className="pass-wrapper">
@@ -307,7 +367,7 @@ export default function SignUp() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            style={{background:"#ffe484",backgroundColor:"#ffe484",border:"1px bold #ffe484",borderColor:"#000",color:"#000",fontWeight:"bold"}}
+                            style={{ background: "#ffe484", backgroundColor: "#ffe484", border: "1px bold #ffe484", borderColor: "#000", color: "#000", fontWeight: "bold" }}
 
                         // onClick={(e)=>{e.preventDefault();register(firstName,lastName,gender,mobileno,address,area,city,email,password,cpassword)}}
                         >
@@ -325,14 +385,16 @@ export default function SignUp() {
                             pauseOnHover />
                         <Grid container justify="flex-end">
                             <Grid item>
-                                <Link href="/signin" variant="body2" style={{color:"#000"}}>
+                                <Link href="/signin" variant="body2" style={{ color: "#000" }}>
                                     Already have an account? Sign in
                 </Link>
                             </Grid>
+
                         </Grid>
+
                     </form>
                 </div>
-               
+
             </Container>
         </div>
     )

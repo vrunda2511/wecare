@@ -59,7 +59,7 @@ const Navbar = ({ toggle, history }) => {
                                 duration={500}
                                 spy={true}
                                 exact='true'
-                                offset={-80}
+                                offset={-65}
                             >Home</NavLinks>
                         </NavItem>
                         <NavItem>
@@ -70,7 +70,7 @@ const Navbar = ({ toggle, history }) => {
                                 duration={600}
                                 spy={true}
                                 exact='true'
-                                offset={0}
+                                offset={-65}
                             >Services</NavLinks>
                         </NavItem>
                         <NavItem>
@@ -81,7 +81,7 @@ const Navbar = ({ toggle, history }) => {
                                 duration={700}
                                 spy={true}
                                 exact='true'
-                                offset={0}
+                                offset={-65}
                             >About</NavLinks>
                         </NavItem>
                         <NavItem>
@@ -103,7 +103,7 @@ const Navbar = ({ toggle, history }) => {
                                 duration={900}
                                 spy={true}
                                 exact='true'
-                                offset={-55}
+                                offset={-65}
                             >Contact</NavLinks>
                         </NavItem>
                         {

@@ -27,6 +27,11 @@ export default function AccountDropDown() {
     scroll.scrollToTop();
 
   }
+  function redirectToUpdatePassword() {
+    history.push('/updatepassword');
+    scroll.scrollToTop();
+
+  }
   function redirectToOrders() {
     history.push('/orders');
     scroll.scrollToTop();
@@ -52,7 +57,7 @@ export default function AccountDropDown() {
       >
         <MenuItem onClick={handleClose, redirectToProfile}>Profile</MenuItem>
         <MenuItem onClick={handleClose, redirectToOrders}>Order</MenuItem>
-        {/* <MenuItem onClick={handleClose}>Update Password</MenuItem> */}
+        <MenuItem onClick={handleClose,redirectToUpdatePassword}>Update Password</MenuItem>
       </Menu>
     </div>
   );

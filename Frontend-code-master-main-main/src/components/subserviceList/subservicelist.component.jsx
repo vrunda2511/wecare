@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SubserviceCard from '../subserviceCard/subserviceCard.component'
 import image from '../../images/nodatafound.png'
+import '../service-list/service-list.styles.css'
 
 
 export default class SubserveiceList extends Component {
@@ -34,14 +35,17 @@ export default class SubserveiceList extends Component {
         else{
             return (
                 <div>
-                    <div className="container-fluid">
+                    <div className="pagebody">
+                    <h1 style={{ textAlign: 'center', paddingTop: '100px' }} className="pagebodytitle">{this.props.location.state}</h1>
+                    <div className=" container-fluid d-flex cardlist pagebody" >
+
                         <div className="row nthcard">
                             {this.state.sections.map(({ subservice_id, ...otherSectionProps }) => (
                                 <div key={subservice_id}>
                                     <SubserviceCard key={subservice_id} subserviceId={subservice_id} {...otherSectionProps} />
                                 </div>))}
                         </div>
-    
+    </div>
                         {/* // <SubserviceCard /> */}
                     </div>
                 </div>

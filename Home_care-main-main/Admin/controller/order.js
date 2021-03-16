@@ -57,7 +57,7 @@ exports.UpdateOrderData = function(req, res) {
                   secureConnection: true,
                   auth: {
                     user: "wecarehomecare.2511@gmail.com",
-                    pass: "savaliya2511"
+                    pass: "savaliya1234"
                   }
                 };
 

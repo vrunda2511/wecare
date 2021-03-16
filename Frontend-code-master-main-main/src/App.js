@@ -9,7 +9,8 @@ import OrderPage from "./views/ordersPage/orderPage";
 import ProfilePage from "./views/Profilepage/profilepage";
 import ForgetPassword from "./views/ForgetPasswordpage/Forgetpassword";
 import ResetPassword from "./views/ResetPasswordPage/ResetPassword";
-
+import UpdatePass from "./views/UpdatePassword/updatepassword";
+import OrderPageByDates from "./views/orderPageByDates/orderPageByDates";
 function App() {
   return (
     <Router>
@@ -18,9 +19,13 @@ function App() {
         <Route path="/signin" component={SignInPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/profile" component={ProfilePage} />
-        <Route path="/orders" component={OrderPage} />
+       
         <Route path="/ForgetPassword" component={ForgetPassword} />
         <Route path="/ResetPassword" component={ResetPassword} />
+        <Route path="/updatepassword" component={UpdatePass} />
+        <Route path="/yourorders" component={OrderPage} />
+        <Route path="/orders" component={OrderPageByDates} />
+        
         <Route
           path="/subservices"
           component={props => <SubServeicePage {...props} />}
