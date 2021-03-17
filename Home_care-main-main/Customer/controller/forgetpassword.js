@@ -15,7 +15,7 @@ exports.Otpsend = function (req, res) {
           if (response.rowCount == 1) {
             var otp = Math.floor(1000 + Math.random() * 9000);
             console.log(otp);
-                    var smtpConfig =  {
+               var smtpConfig =  {
               service: 'smtp.gmail.com',
               host: 'smtp.gmail.com',
               port: 587,

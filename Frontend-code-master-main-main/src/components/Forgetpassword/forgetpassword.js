@@ -203,9 +203,13 @@ export default function ForgetPasswordComponent() {
                 draggable
                 pauseOnHover
               />
+              <Link href="/signin" variant="body2" style={{color:"#000"}}>
+                Back to sign in?
+                  </Link>
             </form>
           </div>
         </Container>
+        
         </div>
       ) : (
         <Container component="main" maxWidth="xs">
@@ -261,6 +265,9 @@ export default function ForgetPasswordComponent() {
                 draggable
                 pauseOnHover
               />
+              <Link href="/signin" variant="body2" style={{color:"#000"}}>
+                Back to sign in?
+                  </Link>
             </form>
           </div>
         </Container>

@@ -173,6 +173,9 @@ export default function  ResetPasswordComponent() {
                   draggable
                   pauseOnHover
                   />
+                   <Link href="/signin" variant="body2" style={{color:"#000"}}>
+                Back to sign in?
+                  </Link>
             
           </form>
         </div>

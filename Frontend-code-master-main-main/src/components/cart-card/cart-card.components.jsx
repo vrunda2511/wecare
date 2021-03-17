@@ -58,9 +58,12 @@ export default function CartCard({ cart_id, cartid, sub_servicename, subservice_
           draggable: true,
           progress: undefined,
         });
+        setTimeout(function () {
+          window.location.reload(false);
+      }, 100);
       })
       .catch(error => console.log('error', error));
-      window.location.reload(false);
+    
   }
 
 

@@ -62,7 +62,7 @@ exports.Signup=function(req,res){
 exports.SignIn=function(req,res){
     (async()=>{
         const {email,password}=req.body;
-        const checkemail=await client.query('select email,customer_id from customer where email=$1',[email],(error,result)=>{
+        const checkemail=await client.query('select email,customer_id from customer where email=$1 and role=1',[email],(error,result)=>{
             if(error){
                 res.status(401).json(error);
             }
@@ -155,7 +155,7 @@ exports.ViewCustomer=function(req,res){
 }
 exports.AdminViewCustomer=function(req,res){
     (async()=>{
-        const Adminviewcustomer=await client.query("select  customer_id, firstname,lastname,gender,mobile_no,email,address,image,area,city from customer",(error,responce)=>{
+        const Adminviewcustomer=await client.query("select  customer_id,role, firstname,lastname,gender,mobile_no,email,address,image,area,city from customer",(error,responce)=>{
             if(error){
                  res.status(401).json(error);
             }
@@ -164,6 +164,23 @@ exports.AdminViewCustomer=function(req,res){
                 {
                     data:responce.rows,
                     count:responce.rowCount
+                }
+                
+            )
+        })
+    })();
+}
+exports.AdminActivateCustomer=function(req,res){
+    (async()=>{
+        const roleview=req.body;
+        const Adminviewcustomer=await client.query("update customer set role=$1 where customer_id=$2",[roleview.role,roleview.customer_id],(error,responce)=>{
+            if(error){
+                 res.status(401).json(error);
+            }
+            res.status(200).json(
+                {
+                    status:"Success",
+                    msg:"Updated Successfully"
                 }
                 
             )

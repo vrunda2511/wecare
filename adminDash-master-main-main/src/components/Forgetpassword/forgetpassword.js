@@ -138,7 +138,7 @@ export default function  ForgetPasswordComponent() {
          {val
       ? 
       <div>
-         <Button
+         {/* <Button
                 type="submit"
 
                 variant="contained"
@@ -149,7 +149,7 @@ export default function  ForgetPasswordComponent() {
             // onClick={(e)=>{e.preventDefault();register(firstName,lastName,gender,mobileno,address,area,city,email,password,cpassword)}}
             >
                 Back to home
-            </Button>
+            </Button> */}
       
       <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -196,7 +196,9 @@ export default function  ForgetPasswordComponent() {
                   draggable
                   pauseOnHover
                   />
-          
+           <Link href="/signin" variant="body2" style={{color:"#000"}}>
+                Back to sign in?
+                  </Link>
         </form>
       </div>
      
@@ -250,7 +252,9 @@ export default function  ForgetPasswordComponent() {
                   draggable
                   pauseOnHover
                   />
-          
+           <Link href="/signin" variant="body2" style={{color:"#000"}}>
+                Back to sign in?
+                  </Link>
         </form>
       </div>
      

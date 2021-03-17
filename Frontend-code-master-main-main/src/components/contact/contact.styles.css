@@ -154,7 +154,7 @@ p {
 }
 .pagebodytitle2{
   visibility: visible;
-  animation: slide-up 4s ease;
+  animation: slide-up 2s ease;
 }
 @keyframes slide-up {
   0% {
@@ -167,7 +167,7 @@ p {
 }
 .pagebodybutton{
   visibility: visible;
-  animation: slide-down 4s ease;
+  animation: slide-down 2s ease;
 }
 @keyframes slide-down {
   0% {

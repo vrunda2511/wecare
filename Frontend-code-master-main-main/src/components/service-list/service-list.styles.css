@@ -21,11 +21,11 @@
 }
 .pagebody{
   visibility: visible;
-  animation: slide-left 3s ease;
+  animation: slide-left 2s ease;
 }
 @keyframes slide-left {
   0% {
-      transform: translateX(-1000px);
+      transform: translateX(-800px);
   }
   100% {
 
@@ -34,7 +34,7 @@
 }
 .pagebodytitle{
   visibility: visible;
-  animation: slide-right 3s ease;
+  animation: slide-right 2s ease;
 }
 @keyframes slide-right {
   0% {

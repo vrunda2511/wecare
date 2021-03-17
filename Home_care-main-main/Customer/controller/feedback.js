@@ -33,7 +33,7 @@ exports.ViewFeedback=function(req,res){
 
 exports.AdminViewFeedback=function(req,res){
     (async()=>{
-        const adminviewfeedback=await client.query('select feedback_id, c.firstname as customername ,c.lastname as customerlastname,p.firstname as providername,p.lastname as providerlastname,review,rating,Feedback.created_date,sub_servicename,service_name from customer c ,services s ,subservices s2,provider p,feedback where feedback.subservice_id =s2.subservice_id and feedback.customer_id =c.customer_id and s2.provider_id=p.provider_id and s.service_id =s2.service_id',(error,response)=>{
+        const adminviewfeedback=await client.query('select feedback_id, c.firstname as customername ,c.lastname as customerlastname,p.firstname as providername,p.lastname as providerlastname,review,rating,Feedback.created_date,sub_servicename,service_name,rating from customer c ,services s ,subservices s2,provider p,feedback where feedback.subservice_id =s2.subservice_id and feedback.customer_id =c.customer_id and s2.provider_id=p.provider_id and s.service_id =s2.service_id',(error,response)=>{
             if(error){
                 res.status(401).json(error);
             }

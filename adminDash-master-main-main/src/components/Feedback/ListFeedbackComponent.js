@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import Rating from '@material-ui/lab/Rating';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 class ListFeedbackComponent extends Component {
     constructor(props) {
@@ -78,7 +80,7 @@ class ListFeedbackComponent extends Component {
 
         return (
             <div className="container">
-                <h2 className="text-center" style={{ marginTop: "15px" }}>Feedback</h2>
+                <h2 className="text-center" style={{ marginTop: "25px",marginBottom:"25px" }}>Feedback</h2>
 
                 <div className="row">
                     <table className="table table-striped table-bordered">
@@ -89,6 +91,7 @@ class ListFeedbackComponent extends Component {
                                 <th>Subservice Name</th>
                                 <th>Provider Name</th>
                                 <th>Customer Name</th>
+                                <th>Rating</th>
                                 <th>Review</th>
                                 <th>Action</th>
                             </tr>
@@ -102,6 +105,10 @@ class ListFeedbackComponent extends Component {
                                             <td>{feedback.sub_servicename}</td>
                                             <td>{feedback.providername}  {feedback.providerlastname}</td>
                                             <td>{feedback.customername}  {feedback.customerlastname}</td>
+                                            <td style={{alignItems:"center"}}>
+                                            <Rating name="size-medium" defaultValue={feedback.rating} style={{marginRight:50}}  readOnly/>
+                                           
+                                            </td>
                                             <td>{feedback.review}</td>
                                             <td>
                                                 <button className="btn btn-danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.deleteFeedback(feedback.feedback_id) }}>Delete</button>

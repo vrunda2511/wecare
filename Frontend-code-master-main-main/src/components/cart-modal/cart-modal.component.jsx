@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import CartCard from '../cart-card/cart-card.components'
 import { ToastContainer, toast } from 'react-toastify';
+
+import dateFormat from 'dateformat';
+
 import image from '../../images/nodatafound.png'
 
 
@@ -104,49 +107,83 @@ fetch("http://localhost:4000/api/ViewFromCart/"+customer_id, requestOptions)
   customer_id=localStorage.getItem("customer_id");
   handleSubmit(event){ 
     event.preventDefault()  
+    var pincode=event.target.pincode.value;
+    console.log("va"+pincode)
+    var GivenDate=event.target.date.value;
+    var CurrentDate = new Date();
+    CurrentDate= dateFormat(CurrentDate, "yyyy-mm-dd")
+   // GivenDate = new Date();
+    console.log(CurrentDate)
+    if(pincode==""||event.target.date.value=="" ||event.target.timeslot.value==""){
+      toast.error('All Fields Are Required', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    else if(GivenDate < CurrentDate){
+      toast.error('Please enter valid date', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    else{
+      let i;
+      for(i=0;i<this.subserviceKIID.length;i++){
+        console.log(this.subserviceKIID[i],this.state.orderaddress.address,this.state.orderaddress.area,this.state.orderaddress.city,this.subserviceKPrice[i],event.target.date.value,event.target.timeslot.value,event.target.pincode.value)
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+  
+        var urlencoded = new URLSearchParams();
+          urlencoded.append("customer_id", this.customer_id);
+          urlencoded.append("subservice_id", this.subserviceKIID[i]);
+          urlencoded.append("address", this.state.orderaddress.address);
+          urlencoded.append("area", this.state.orderaddress.area);
+          urlencoded.append("amount", this.subserviceKPrice[i]);
+          urlencoded.append("city", this.state.orderaddress.city);
+          urlencoded.append("pincode", event.target.pincode.value);
+          urlencoded.append("order_date", event.target.date.value);
+          urlencoded.append("time_slot", event.target.timeslot.value);
+  
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow'
+        };
+  
+        fetch("http://localhost:4000/api/PlaceOrder", requestOptions)
+          .then(response => response.json())
+          .then(result => {console.log(result);
+          
+          })
+          .catch(error => console.log('error', error));
+    }
+ 
+      toast.success("Congratulations you will get confirmation soon", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+        this.props.onHide()
+      
+   
     //alert(event.target.date.value+" "+event.target.timeslot.value+" "+event.target.pincode.value)
     //var dt=event.target.date.value
-    let i;
-    for(i=0;i<this.subserviceKIID.length;i++){
-      console.log(this.subserviceKIID[i],this.state.orderaddress.address,this.state.orderaddress.area,this.state.orderaddress.city,this.subserviceKPrice[i],event.target.date.value,event.target.timeslot.value,event.target.pincode.value)
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-      var urlencoded = new URLSearchParams();
-        urlencoded.append("customer_id", this.customer_id);
-        urlencoded.append("subservice_id", this.subserviceKIID[i]);
-        urlencoded.append("address", this.state.orderaddress.address);
-        urlencoded.append("area", this.state.orderaddress.area);
-        urlencoded.append("amount", this.subserviceKPrice[i]);
-        urlencoded.append("city", this.state.orderaddress.city);
-        urlencoded.append("pincode", event.target.pincode.value);
-        urlencoded.append("order_date", event.target.date.value);
-        urlencoded.append("time_slot", event.target.timeslot.value);
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: urlencoded,
-        redirect: 'follow'
-      };
-
-      fetch("http://localhost:4000/api/PlaceOrder", requestOptions)
-        .then(response => response.json())
-        .then(result => {console.log(result);
-        if(result.status=="success"){
-          toast.success(result.msg, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });
-            this.props.onHide()
-          }
-        })
-        .catch(error => console.log('error', error));
+    
     
     
     }
@@ -175,12 +212,12 @@ fetch("http://localhost:4000/api/ViewFromCart/"+customer_id, requestOptions)
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="container-fluid d-flex row nthcard">
-         
-        {this.state.cart.map(({ cart_id, ...otherCartProps}) => (
+         {this.state.cart.length==0?<img src={image} alt='logo' style={{ height: "150px",margin:50,marginLeft:300}} />:
+        this.state.cart.map(({ cart_id, ...otherCartProps}) => (
            
         <CartCard key={cart_id} {...otherCartProps} cart_id={cart_id} />
-           ))}  
-
+           ))
+}
         </Modal.Body>
         <Modal.Footer >
         <form onSubmit={this.handleSubmit}>

@@ -130,10 +130,12 @@ import { ToastContainer, toast } from 'react-toastify';
                                 <th> Customer Name</th>
                                  <th>Service</th>
                                  <th > Address</th>
-                                <th > area</th>
+                                <th > Area</th>
                                 <th> Provider Name</th>
                                 <th >Provider Contact</th>
+                                <th>Time Slot</th>
                                 <th>Order Date</th>
+                                <th> Amount</th>
                                 <th colSpan={2}>Action</th>
                             </tr>
                         </thead>
@@ -149,7 +151,10 @@ import { ToastContainer, toast } from 'react-toastify';
                                             <td>{order.area}</td>
                                             <td>{order.provider_firstname} {order.provider_lastname}</td>
                                             <td> {order.provider_mobileno} </td>
+                                            <td> {order.time_slot} </td>
                                             <td>{dateFormat(order.order_date, "dS mmmm, yyyy")}</td>
+                                            <td> ₹{order.price} </td>
+
                                             <td>
                                                 <button className="btn btn-info" type="submit"
                                                  onClick={()=>this.confirmorder(order.placeorder_id)}>Confirm </button>

@@ -36,10 +36,11 @@ export default class OrderCard extends Component {
           <Button size="small" className="baton">
             Status - {this.props.order_status}
           </Button>
+          {this.props.order_status==="confirm"?
           <Button size="small" className="baton"
             onClick={() => this.setState({ modalShow: true })} >
             Feedback
-                   </Button>
+                   </Button>:<div></div>}
           <FeedBackModal
             name={this.props.sub_servicename}
             subid={this.props.subservice_id}

@@ -4,6 +4,8 @@ import { UpdateSubserviceComponent } from "./UpdateSubserviceComponent"
 import { ButtonToolbar } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
+import { Link } from "react-router-dom"
+
 
 class IndividualServiceComponent extends Component {
     constructor(props) {
@@ -81,9 +83,15 @@ class IndividualServiceComponent extends Component {
                 <h2 className="text-center" style={{ marginTop: "15px" }}>SubServices</h2>
                 <div className="row">
                     <ButtonToolbar>
+                        <button className="btn btn-info" style={{marginRight: "30px",paddingLeft:30,paddingRight:30}} ><Link to='/' style={{ color: "white" ,textDecoration:"none"}}>Back</Link></button>
                         <button className="btn btn-info" onClick={() => this.setState({ addModalShow: true })} > Add Subservice</button>
+                        
+                       
+                   
                         <CreateSubserviceComponent show={this.state.addModalShow} onHide={addModalClose} />
                     </ButtonToolbar>
+                   
+                        
                 </div>
                 <br></br>
                 <div className="row">
@@ -113,7 +121,7 @@ class IndividualServiceComponent extends Component {
                                             <td>{individualservice.sub_servicename} </td>
                                             <td>{individualservice.providername}</td>
                                             
-                                            <td>{individualservice.price}</td>
+                                            <td> ₹{individualservice.price}</td>
                                             <td>{individualservice.time_duration}</td>
 
                                             <td>

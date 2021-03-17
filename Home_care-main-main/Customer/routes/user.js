@@ -57,10 +57,13 @@ router.get('/ViewCustomer/:id',(req,res)=>{
 router.get('/AdminViewCustomer',(req,res)=>{
   return UserManagement.AdminViewCustomer(req,res);
 })
-
+router.put('/AdminActivateCustomer',(req,res)=>{
+  return UserManagement.AdminActivateCustomer(req,res);
+})
 
 //for testing purpose
 router.get('/test',UserManagement.isSignedIn,(req,res)=>{
   return res.send("A protected route")
 })
+
 module.exports=router;

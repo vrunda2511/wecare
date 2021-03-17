@@ -36,7 +36,7 @@ exports.ViewOrder=function(req,res){
 exports.ViewOrderDates=function(req,res){
     (async()=>{
         const customer_id=req.params.id;        
-        const placeorder=await client.query('select order_date  as order_date from placeorder p left join subservices s on s.subservice_id =p.subservice_id where customer_id=$1 group by order_date',[customer_id],(error,response)=>{
+        const placeorder=await client.query('select order_date  as order_date from placeorder p left join subservices s on s.subservice_id =p.subservice_id where customer_id=$1 group by order_date order by order_date DESC',[customer_id],(error,response)=>{
             if(error){
                 return res.status(401).json(error);
             }

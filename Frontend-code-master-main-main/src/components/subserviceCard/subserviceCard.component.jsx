@@ -78,7 +78,7 @@ export default function SubserviceCard({ sub_servicename, short_description, pri
 
   function addtocart(subserviceId) {
     if (localStorage.getItem("token") === null) {
-      toast.success('Login is required!! ', {
+      toast.warn('Login is required!! ', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -113,7 +113,7 @@ export default function SubserviceCard({ sub_servicename, short_description, pri
         .then(result => {
           console.log(result);
           toast.success('Added to Cart Successfully!', {
-            position: "top-right",
+            position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
             closeOnClick: true,
